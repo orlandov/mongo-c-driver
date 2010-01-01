@@ -92,9 +92,19 @@ typedef enum {
     mongo_conn_not_master /* leaves conn connected to slave */
 } mongo_conn_return;
 
+/* only need one of these */
+static const int zero = 0;
+static const int one = 1;
+
 /**
  * @param options can be null
  */
+mongo_message * mongo_message_create(int len , int id, int responseTo, int op);
+void mongo_message_send(mongo_connection *conn, mongo_message* mm);
+char * mongo_data_append(char *start, const void *data, int len);
+char * mongo_data_append32(char *start, const void *data);
+char * mongo_data_append64(char *start, const void *data);
+
 mongo_conn_return mongo_connect( mongo_connection * conn , mongo_connection_options * options );
 mongo_conn_return mongo_connect_pair( mongo_connection * conn , mongo_connection_options * left, mongo_connection_options * right );
 mongo_conn_return mongo_reconnect( mongo_connection * conn ); /* you will need to reauthenticate after calling */
