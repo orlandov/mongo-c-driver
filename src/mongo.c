@@ -9,10 +9,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-/* only need one of these */
-static const int zero = 0;
-static const int one = 1;
-
 /* ----------------------------
    message stuff
    ------------------------------ */
